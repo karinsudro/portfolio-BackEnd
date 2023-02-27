@@ -37,7 +37,7 @@ public class SSkill {
     }
 
     //mismo que create
-    public void editSkill(Skill habil) {
+    public void updateSkill(Skill habil) {
         skillRepo.save(habil);
     }
     

@@ -1,11 +1,9 @@
 package com.portfolio.karinsd.controller;
 
-import com.portfolio.karinsd.entity.Experiencia;
-import com.portfolio.karinsd.service.SExperiencia;
+import com.portfolio.karinsd.entity.ExpeDesign;
+import com.portfolio.karinsd.service.SExpeDesign;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,49 +18,50 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("experiencia") //localhost:8080/exp_laboral
+@RequestMapping("/expeDesign") //localhost:8080/expeDesign
 @CrossOrigin(origins = "http://localhost:4200") //xq se cruza con angular, desp se cambia
-public class CExperiencia {
+public class CExpeDesign {
     
     //controller conectada al servicio, servicio al repo y repo a la db
     @Autowired
-    SExperiencia experServ;
+    SExpeDesign expeDesServ;
     
     @GetMapping("/lista")
     @ResponseBody 
-    public List<Experiencia> getExperiencias(){
-        return experServ.getExperiencias();  
+    public List<ExpeDesign> getExpeDesigns(){
+        return expeDesServ.getExpeDesigns();  
     }
     
     //para ver las experiencias 
     @GetMapping("/find/{id}")
     @ResponseBody 
-    public Experiencia findExperiencia(@PathVariable int id){
+    public ExpeDesign findExpeDesign(@PathVariable int id){
         //si retorna vacío no pasa nada
-        return experServ.findExperiencia(id);  
+        return expeDesServ.findExpeDesign(id);  
     }
     
     //@RequestBody es para recibir un cargo. Viene en un JSON
     @PostMapping ("/new")
-    public String saveExperiencia(@RequestBody Experiencia exper){
-        experServ.saveExperiencia(exper);
+    public String saveExpeDesign(@RequestBody ExpeDesign expeDe){
+        expeDesServ.saveExpeDesign(expeDe);
         return "El cargo fue creado correctamente";
         //return ResponseEntity.ok().body(exper);
     } 
 
+    //para editar
+    @PutMapping("/update/{id}")   
+    public String updateExpeDesign(@RequestBody ExpeDesign expeDe){
+        expeDesServ.updateExpeDesign(expeDe);
+        return "El cargo se actualizó correctamente";
+        //return new ResponseEntity(HttpStatus.OK);
+    }
+    
     @DeleteMapping("/delete/{id}")
-    public String deleteExperiencia(@PathVariable int id){
-        experServ.deleteExperiencia(id);
+    public String deleteExpeDesign(@PathVariable int id){
+        expeDesServ.deleteExpeDesign(id);
         return "El cargo fue borrado correctamente";
         //return new ResponseEntity(HttpStatus.OK);
     }
     
-    //para editar
-    @PutMapping("/editar/{id}")   
-    public String editExperiencia(@RequestBody Experiencia exper){
-        experServ.editExperiencia(exper);
-        return "El cargo se actualizó correctamente";
-        //return new ResponseEntity(HttpStatus.OK);
-    }
     
 }

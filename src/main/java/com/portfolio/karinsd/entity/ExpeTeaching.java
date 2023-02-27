@@ -2,28 +2,26 @@ package com.portfolio.karinsd.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-//import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-//import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
-//import jakarta.persistence.ManyToOne;
-//import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
+
+
 @Getter @Setter
 @Entity
-public class Experiencia{
+public class ExpeTeaching {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     //@Column(name="id_exp")
     private int id;  
     
-    @Column(name="expe_tipo")
-    private String expe_tipo;
+    //@Column(name="expe_tipo")
+    //private String expe_tipo;
      
     //@NotNull
     @Column(name="cargo")
@@ -47,20 +45,22 @@ public class Experiencia{
     //@ManyToOne(fetch=FetchType.LAZY)
     //@JoinColumn(name="categoria_id")
     //private Categoria categoria;
-    
-    
-    public Experiencia() {
+
+    public ExpeTeaching() {
     }
 
-    public Experiencia(int id, String cargo, String inicio, String fin, String lugar, String descripcion) {
+    public ExpeTeaching(int id, String cargo, String inicio, String fin, String lugar, String descripcion) {
         this.id = id;
         this.cargo = cargo;
         this.inicio = inicio;
         this.fin = fin;
         this.lugar = lugar;
         this.descripcion = descripcion;
-        
     }
+    
+    
+    
 
+    
     
 }

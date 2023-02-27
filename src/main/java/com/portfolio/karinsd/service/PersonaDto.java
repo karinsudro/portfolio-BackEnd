@@ -4,11 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-
 @Getter @Setter
-public class SPersonaDto {  
+public class PersonaDto {
     
-    int id;
+    private int id;   
     
     private String hola;
     
@@ -19,10 +18,10 @@ public class SPersonaDto {
     private String cargo;
 
     
-    public SPersonaDto() {
+    public PersonaDto() {
     }
 
-    public SPersonaDto(int id, String hola, String nombre, String apellido, String cargo) {
+    public PersonaDto(int id, String hola, String nombre, String apellido, String cargo) {
         this.id = id;
         this.hola = hola;
         this.nombre = nombre;

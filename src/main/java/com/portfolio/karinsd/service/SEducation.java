@@ -36,7 +36,7 @@ public class SEducation {
     }
     
     //mismo que create
-    public void editEducation(Education educ) {
+    public void updateEducation(Education educ) {
         educRepo.save(educ);
     }
     

@@ -1,7 +1,7 @@
 package com.portfolio.karinsd.controller;
 
-import com.portfolio.karinsd.entity.About;
-import com.portfolio.karinsd.service.SAbout;
+import com.portfolio.karinsd.entity.ExpeTeaching;
+import com.portfolio.karinsd.service.SExpeTeaching;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,50 +18,48 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/about") //localhost:8080/about
+@RequestMapping("/expeTeaching") //localhost:8080/exp_laboral
 @CrossOrigin(origins = "http://localhost:4200") //xq se cruza con angular, desp se cambia
-public class CAbout {
+public class CExpeTeaching {
     
     //controller conectada al servicio, servicio al repo y repo a la db
     @Autowired
-    SAbout aboutServ;
-   
-    //Endpoints
+    SExpeTeaching expeTeachServ;
+    
     @GetMapping("/lista")
     @ResponseBody 
-    public List<About> getAbouts(){
-        return aboutServ.getAbouts();  
+    public List<ExpeTeaching> getExpeTeachings(){
+        return expeTeachServ.getExpeTeachings();  
     }
     
-    //para ver about me 
+    //para ver las experiencias 
     @GetMapping("/find/{id}")
     @ResponseBody 
-    public About findAbout(@PathVariable int id){
+    public ExpeTeaching findExpeTeaching(@PathVariable int id){
         //si retorna vacío no pasa nada
-        return aboutServ.findAbout(id);  
+        return expeTeachServ.findExpeTeaching(id);  
     }
     
-    //@RequestBody es para recibir un about nuevo. Viene en un JSON
+    //@RequestBody es para recibir un cargo. Viene en un JSON
     @PostMapping ("/new")
-    public String saveAbout(@RequestBody About aboutme){
-        aboutServ.saveAbout(aboutme);
-        return "Los datos fueron creados correctamente";
-        //return ResponseEntity.ok().body(pers);
-    
-    }
-    
+    public String saveExpeTeaching(@RequestBody ExpeTeaching expeTeach){
+        expeTeachServ.saveExpeTeaching(expeTeach);
+        return "El cargo fue creado correctamente";
+        //return ResponseEntity.ok().body(exper);
+    } 
+
     //para editar
     @PutMapping("/update/{id}")   
-    public String updateAbout(@RequestBody About aboutme){
-        aboutServ.updateAbout(aboutme);
-        return "Los datos se actualizaron correctamente";
+    public String updateExpeTeaching(@RequestBody ExpeTeaching expeTeach){
+        expeTeachServ.updateExpeTeaching(expeTeach);
+        return "El cargo se actualizó correctamente";
         //return new ResponseEntity(HttpStatus.OK);
     }
     
     @DeleteMapping("/delete/{id}")
-    public String deleteAbout(@PathVariable int id){
-        aboutServ.deleteAbout(id);
-        return "Los datos fueron borrados correctamente";
+    public String deleteExpeTeaching(@PathVariable int id){
+        expeTeachServ.deleteExpeTeaching(id);
+        return "El cargo fue borrado correctamente";
         //return new ResponseEntity(HttpStatus.OK);
     }
     

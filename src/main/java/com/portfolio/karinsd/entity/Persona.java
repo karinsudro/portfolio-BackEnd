@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,8 +39,8 @@ public class Persona {
     private String cargo;
     
     //@NotNull
-    @Column(name="user")
-    private String user;
+    @Column(name="email")
+    private String email;
     
     //@NotNull
     @Column(name="clave")
@@ -51,13 +50,13 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(int id, String hola, String nombre, String apellido, String cargo, String user, String clave) {
+    public Persona(int id, String hola, String nombre, String apellido, String cargo, String email, String clave) {
         this.id = id;
         this.hola = hola;
         this.nombre = nombre;
         this.apellido = apellido;
         this.cargo = cargo;
-        this.user = user;
+        this.email = email;
         this.clave = clave;
     }
 

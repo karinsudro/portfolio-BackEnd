@@ -4,8 +4,8 @@ import com.portfolio.karinsd.entity.Red;
 import com.portfolio.karinsd.service.SRed;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("red") //localhost:8080/red
+@RequestMapping("/red") //localhost:8080/red
 @CrossOrigin(origins = "http://localhost:4200") //xq se cruza con angular, desp se cambia
 public class CRed {
     
@@ -51,6 +51,14 @@ public class CRed {
     
     }
     
+    //para editar
+    @PutMapping("/update/{id}")   
+    public String updateRed(@RequestBody Red redes){
+        redServ.updateRed(redes);
+        return "La red se actualizó correctamente";
+        //return new ResponseEntity(HttpStatus.OK);
+    }
+    
     @DeleteMapping("/delete/{id}")
     public String deleteRed(@PathVariable int id){
         redServ.deleteRed(id);
@@ -58,12 +66,5 @@ public class CRed {
         //return new ResponseEntity(HttpStatus.OK);
     }
     
-    //para editar
-    @PutMapping("/edit/{id}")   
-    public String editRed(@RequestBody Red redes){
-        redServ.editRed(redes);
-        return "La red se actualizó correctamente";
-        //return new ResponseEntity(HttpStatus.OK);
-    }
     
 }

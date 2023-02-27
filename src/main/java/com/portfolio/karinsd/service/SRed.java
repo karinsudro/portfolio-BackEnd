@@ -37,7 +37,7 @@ public class SRed {
     }
     
     //mismo que create
-    public void editRed(Red redes) {
+    public void updateRed(Red redes) {
         redRepo.save(redes);
     }
     

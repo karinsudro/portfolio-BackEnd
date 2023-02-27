@@ -35,7 +35,7 @@ public class SAbout {
     }
 
     //mismo que create
-    public void editAbout(About aboutme) {
+    public void updateAbout(About aboutme) {
         aboutRepo.save(aboutme);
     }
   

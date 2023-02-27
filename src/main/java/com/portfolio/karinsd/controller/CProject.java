@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("project") //localhost:8080/project
+@RequestMapping("/project") //localhost:8080/project
 @CrossOrigin(origins = "http://localhost:4200") //xq se cruza con angular, desp se cambia
 public class CProject {
     
@@ -50,6 +50,13 @@ public class CProject {
         //return ResponseEntity.ok().body(proj);
     }
   
+    //para editar
+    @PutMapping("/update/{id}")   
+    public String updateProject(@RequestBody Project proj){
+        projectServ.updateProject(proj);
+        return "El proyecto se actualizó correctamente";
+        //return new ResponseEntity(HttpStatus.OK);
+    }
     
     @DeleteMapping("/delete/{id}")
     public String deleteProject(@PathVariable int id){
@@ -58,12 +65,5 @@ public class CProject {
         //return new ResponseEntity(HttpStatus.OK);
     }
     
-    //para editar
-    @PutMapping("/edit/{id}")   
-    public String editProject(@RequestBody Project proj){
-        projectServ.editProject(proj);
-        return "El proyecto se actualizó correctamente";
-        //return new ResponseEntity(HttpStatus.OK);
-    }
     
 }

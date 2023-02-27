@@ -37,7 +37,7 @@ public class SProject {
     }
     
     //mismo que create
-    public void editProject(Project proj) {
+    public void updateProject(Project proj) {
         projectRepo.save(proj);
     }
     

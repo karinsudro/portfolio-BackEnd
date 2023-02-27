@@ -22,23 +22,26 @@ public class Red {
     private String red;
     
     //@NotNull
+    @Column(name="icono")
+    private String icono;
+    
+    //@NotNull
     @Column(name="link")
     private String link;
     
-    //@NotNull
-    @Column(name="icono")
-    private String icono;
+
 
     
     
     public Red() {
     }
 
-    public Red(int id, String red, String link, String icono) {
+    public Red(int id, String red, String icono, String link ) {
         this.id = id;
         this.red = red;
-        this.link = link;
         this.icono = icono;
+        this.link = link;
+        
     }
 
     

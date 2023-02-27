@@ -2,7 +2,7 @@ package com.portfolio.karinsd.controller;
 
 import com.portfolio.karinsd.entity.Skill;
 import com.portfolio.karinsd.service.SSkill;
-import com.portfolio.karinsd.service.SSkillTipo;
+//import com.portfolio.karinsd.service.SSkillTipo;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.HttpStatus;
@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("skill") //localhost:8080/skill
+@RequestMapping("/skill") //localhost:8080/skill
 @CrossOrigin(origins = "http://localhost:4200") //xq se cruza con angular, desp se cambia
 public class CSkill {
     
     //controller conectada al servicio, servicio al repo y repo a la db
-    @Autowired
-    SSkillTipo skilltipoServ;
+    //@Autowired
+    //SSkillTipo skilltipoServ;
     
     @Autowired
     SSkill skillServ;
@@ -57,6 +57,14 @@ public class CSkill {
     
     }
     
+    //para editar
+    @PutMapping("/update/{id}")   
+    public String updateSkill(@RequestBody Skill habil){
+        skillServ.updateSkill(habil);
+        return "La habilidad se actualizó correctamente";
+        //return new ResponseEntity(HttpStatus.OK);
+    }
+    
     @DeleteMapping("/delete/{id}")
     public String deleteSkill(@PathVariable int id){
         skillServ.deleteSkill(id);
@@ -64,13 +72,6 @@ public class CSkill {
         //return new ResponseEntity(HttpStatus.OK);
     }
     
-    //para editar
-    @PutMapping("/edit/{id}")   
-    public String editSkill(@RequestBody Skill habil){
-        skillServ.editSkill(habil);
-        return "La habilidad se actualizó correctamente";
-        //return new ResponseEntity(HttpStatus.OK);
-    }
     
     
     

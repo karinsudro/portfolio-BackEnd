@@ -20,15 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("education") //localhost:8080/education
-@CrossOrigin(origins = "http://localhost:4200") //xq se cruza con angular, desp se cambia
+@RequestMapping("/education") //localhost:8080/education
+@CrossOrigin(origins = {"http://localhost:4200"}) //xq se cruza con angular, desp se cambia
 public class CEducation {
     
     //controller conectada al servicio, servicio al repo y repo a la db
     @Autowired
     SEducation educServ;
     
-    @GetMapping("/lista")
+    @GetMapping("/lista")  //localhost:8080/education
     @ResponseBody 
     public List<Education> getEducations(){
         return educServ.getEducations();  
@@ -43,11 +43,19 @@ public class CEducation {
     }
     
     //@RequestBody es para recibir un estudio nuevo. Viene en un JSON
-    @PostMapping ("/new")
+    @PostMapping("/new")
     public String saveEducation(@RequestBody Education educ){
         educServ.saveEducation(educ);
         return "El estudio fue creado correctamente";
         //return ResponseEntity.ok().body(educ);
+    }
+    
+    //para editar
+    @PutMapping("/update/{id}")   
+    public String updateEducation(@RequestBody Education educ){
+        educServ.updateEducation(educ);
+        return "El estudio se actualizó correctamente";
+        //return new ResponseEntity(HttpStatus.OK);
     }
     
     @DeleteMapping("/delete/{id}")
@@ -57,12 +65,5 @@ public class CEducation {
         //return new ResponseEntity(HttpStatus.OK);
     }
     
-    //para editar
-    @PutMapping("/edit/{id}")   
-    public String editEducation(@RequestBody Education educ){
-        educServ.editEducation(educ);
-        return "El estudio se actualizó correctamente";
-        //return new ResponseEntity(HttpStatus.OK);
-    }
     
 }

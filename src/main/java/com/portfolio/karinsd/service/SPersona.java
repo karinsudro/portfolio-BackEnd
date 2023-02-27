@@ -2,6 +2,7 @@ package com.portfolio.karinsd.service;
 
 import com.portfolio.karinsd.entity.Persona;
 import com.portfolio.karinsd.repository.RPersona;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,16 +11,17 @@ import org.springframework.stereotype.Service;
 
 
 @Service
+@Transactional
 public class SPersona {
     
     //para hacer inyección de dependencias sin crear tantas instancias con new
     @Autowired  
-    public RPersona persoRepo;
+    RPersona persoRepo;
 
     //Endpoints
-    //public List<Persona> getPersonas() {
-    //    return persoRepo.findAll();
-    //}
+    public List<Persona> getPersonas() {
+        return persoRepo.findAll();
+    }
     
     //si no encuentra la persona retorna null
     public Persona findPersona(Integer id) {
@@ -27,43 +29,33 @@ public class SPersona {
     }
     
     //ya no hay create, sino q modifica lo q hay y si no hay, lo crea
-    //public void savePersona(Persona per) {
-    //    persoRepo.save(per);  
-    //}
-   
-    //public void deletePersona(Integer id) {
-    //    persoRepo.deleteById(id);
-    //}
+    public void savePersona(Persona per) {
+        persoRepo.save(per);  
+    }
 
     //mismo que create
-    public void editPersona(Persona pers) {
+    public void updatePersona(Persona pers) {
         persoRepo.save(pers);
     }
     
-    //Login
-    public Persona loginPersona(String user, String clave){
+    public void deletePersona(Integer id) {
+        persoRepo.deleteById(id);
+    }
     
-        List<Persona> persona=persoRepo.findByUserAndClave(user, clave);
-        if(!persona.isEmpty()){
-            return persona.get(0);  //si la lista no está vacía me retorna lo q hay en posic 0
+   //Login
+    public Persona loginPersona(String email, String clave) {
+        List <Persona> personas = persoRepo.findByEmailAndClave(email, clave);
+        if(!personas.isEmpty()){
+            return personas.get(0); //si la lista no esta vacía ,e devuelve la de la posición 0
         }
         return null;
     }
     
-    
-    
-    
-    /*public PersonaDTO login(String email, String password){
-		Persona persona = rpersona.findByEmailAndPassword(email, password);
-		PersonaDTO personaDTO = new PersonaDTO(persona.getId(),persona.getNombre(),persona.getApellido(),persona.getTitulo(),persona.getFrase(),persona.getAcercade(),persona.getImg_banner(),persona.getImg_pfp(),persona.getCvpdf(),persona.getTextofooter());
-		return personaDTO;
-	}*/
-    
-    
-    
-    
-    
-    
-    
+    //login con dto
+    //public PersonaDto loginPersona(String email, String clave){
+	//Persona persona = persoRepo.findByEmailAndClave(email, clave);
+	//PersonaDto personaDto = new PersonaDto(persona.getId(), persona.getHola(), persona.getNombre(), persona.getApellido(),persona.getCargo());
+	//return personaDto;
+    //}
     
 }
